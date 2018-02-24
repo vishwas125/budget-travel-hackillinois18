@@ -5,15 +5,13 @@ import requests
 from datetime import datetime
 import random
 import json
-import ssl
-from iata_codes import IATACodesClient
 
-if hasattr(ssl, '_create_unverified_context'):
-      ssl._create_default_https_context = ssl._create_unverified_context
 
 
 amadeus_key="a1nd6o3QzlTCjQTtmEDUt4TBKoeGSm55"
 iata_key="a79b4c25-2e79-4c4b-8162-a60748437324"
+current
+
 
 def get_local_location():
     send_url = 'http://freegeoip.net/json'
@@ -74,3 +72,18 @@ def get_hotels(checkin,checkout):
 #get_flights(500)
 
 #get_hotels("2018-02-25","2018-02-28")
+
+def get_attractions(city):
+
+   
+    url="https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-text?city_name="+city+"&apikey="+amadeus_key
+    req = requests.get(url)
+    
+    if req.status_code == 200:    
+        #rawData = req.json()
+        print('Success')
+        
+                
+    else:
+        print(req.status_code)
+        print("Fail")
