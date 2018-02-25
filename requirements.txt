@@ -1,0 +1,7 @@
+Flask == 0.12.2
+Flask-WTF == 0.14.2
+Jinja2 == 2.10
+WTForms == 2.1
+geopy == 1.11.0
+requests == 2.10.0
+configparser == 3.5.0
