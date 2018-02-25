@@ -10,22 +10,17 @@ import configparser
 
 class Travel:
     Config = configparser.ConfigParser()
-    Config.read("/config/budget-travel.ini")
-    amadeus_api_key = Config.get('Main', 'amadeus_api_key')
-    sabre_api_key = Config.get('Main', 'sabre_api_key')
-    zomato_api_key = Config.get('Main', 'zomato_api_key')
-    dark_weather_api_key = Config.get('Main', 'dark_weather_api_key')
-    iata_key = Config.get('Main', 'iata_key')
+    Config.read('../config/budget-travel.ini')
+    amadeus_api_key = Config['Main']['amadeus_api_key']
+    sabre_api_key = Config['Main']['sabre_api_key']
+    zomato_api_key = Config['Main']['zomato_api_key']
+    dark_weather_api_key = Config['Main']['dark_weather_api_key']
+    iata_key = Config['Main']['iata_key']
 
-    def __init__(self, origin_city, start_date, return_date, amadeus_api_key, sabre_api_key, zomato_api_key, dark_weather_api_key, iata_key):
+    def __init__(self, origin_city, start_date, return_date):
         self.origin_city = origin_city
         self.start_date = start_date
         self.return_date = return_date
-        self.amadeus_api_key = amadeus_api_key
-        self.sabre_api_key = sabre_api_key
-        self.zomato_api_key = zomato_api_key
-        self.dark_weather_api_key = dark_weather_api_key
-        self.iata_key = iata_key
 
 
     def get_local_location(self):
@@ -36,6 +31,17 @@ class Travel:
         lon = j['longitude']
         return lat, lon
 
+    def get_top_destination(self, origin_city, departure_date, return_date):
+        url = "https://api.test.sabre.com/v1/lists/top/destinations?origin=" + origin_city + "&destinationtype=domestic&departuredate=" + departure_date + "&returndate=" + return_date + "&topdestinations=6"
+        data = {}
+        response = requests.get(url, data=data,
+                                headers={"Content-Type": "application/json", "Authorization": "Bearer " + self.sabre_api_key})
+        city_list = []
+        data_source = json.loads(response.text)
+        for x in data_source["Destinations"]:
+            if x['Destination']['Type'] == "City":
+                city_list.append(x['Destination']['DestinationLocation'])
+        return city_list
 
     def get_iata_code_city(self, lat, lon):
         url = "https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?latitude=" + str(lat) + "&longitude=" + str(
@@ -48,7 +54,6 @@ class Travel:
             print(req.status_code)
             print("Fail")
         return req.json()[0]['city']
-
 
     def get_iata_code_airport(self, lat, lon):
         url = "https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?latitude=" + str(lat) + "&longitude=" + str(
@@ -190,3 +195,7 @@ class Travel:
             print(response.status_code)
             print("Fail")
         return attractions_list
+
+travel = Travel("Chicago","2018-03-23", "2018-03-30");
+travel.get_flights("500","2018-03-23", "2018-03-30", "CHI")
+#travel.get_attractions("Chicago")
