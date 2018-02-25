@@ -14,7 +14,8 @@ class User:
         self.start_date = start_date
         self.return_date = return_date
         self.user_budget = user_budget
-        self.categorize_budget(user_budget)
+        #self.travel_preference=travel_preference
+        #self.categorize_budget(user_budget,travel_preference, stay_preference, food_preferenc)
 
     def categorize_budget(self, user_budget, travel_preference, stay_preference, food_preference):
         if travel_preference and stay_preference and food_preference:

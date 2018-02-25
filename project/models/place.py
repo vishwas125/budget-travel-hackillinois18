@@ -1,5 +1,6 @@
 class Place:
 
+    destination=""
     iata_code = ""
     attractions_list =[]
     hotels_list = []

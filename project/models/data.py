@@ -11,13 +11,18 @@ import requests
 
 
 class Travel:
-    Config = configparser.ConfigParser()
-    Config.read('../config/budget-travel.ini')
-    amadeus_api_key = Config['Main']['amadeus_api_key']
-    sabre_api_key = Config['Main']['sabre_api_key']
-    zomato_api_key = Config['Main']['zomato_api_key']
-    dark_weather_api_key = Config['Main']['dark_weather_api_key']
-    iata_key = Config['Main']['iata_key']
+    #Config = configparser.ConfigParser()
+   # Config.read('../config/budget-travel.ini')
+    amadeus_api_key ="BlGWrRe3OITosh4PSlzRAlZ4leqVcDBx"
+    sabre_api_key = "T1RLAQLsP5dQOGPAzMdYySsn9hJaydxFXBDq57tdrzd/sZTzmi5gbRfCAADAo34GsJPXi/Dc7kJCArqfZb76MniUeGCJKQl/if2963wSXCUdP/sUPe3Z+rcGg9o32T1gZPI72SC0yZHsacsyFuyrrnYuOAJLCWXbV93s5aSTxGQpRxTtT4VCdL2RXtc4PYir2lYb6Izure28f/35YFhAhqsg9aDD3/shss8XV3ApicoO2nlZVL+KlAPfEAj+XhrgErQPsupE+8G5HaiO0cmeI46qcsJL205/DpW6R/JNHFMTx8li6F0v1QIVWoHi"
+    zomato_api_key = "f52bbd60b69b3c43538a06bd0baa8092"
+    dark_weather_api_key = "1dfe7f5d2677572e44cdaa05ab9f2bd4"
+    iata_key = "a79b4c25-2e79-4c4b-8162-a60748437324"
+    # amadeus_api_key = Config['Main']['amadeus_api_key']
+    # sabre_api_key = Config['Main']['sabre_api_key']
+    # zomato_api_key = Config['Main']['zomato_api_key']
+    # dark_weather_api_key = Config['Main']['dark_weather_api_key']
+    # iata_key = Config['Main']['iata_key']
     geolocator = Nominatim()
 
     def __init__(self,person):
@@ -163,7 +168,6 @@ class Travel:
         data = {}
         weather_list = []
         response = requests.get(url, data=data, headers={"Content-Type": "application/json"})
-        print(response.text)
         if response.status_code == 200:
             print('Success')
         else:
@@ -220,22 +224,21 @@ class Travel:
         return attractions_list
 
     def travel_start(self):
+        places=[]
         latlong = self.get_lat_long(User.origin_city)
         iata = self.get_iata_code_city(latlong.latitude,latlong.longitude)
-        print(iata)
         destination_list =  self.get_top_destination(iata)
         for destination_city in destination_list:
-            print(destination_city)
             place = Place(destination_city)
             city_name = self.get_city_name_from_iata_code(destination_city)
+            place.destination=city_name
             place.attractions_list = self.get_attractions(city_name)
             place.flights = self.get_flights()
             place.hotels_list = self.get_hotels()
             place.weather = self.get_weatherdata(city_name)
             place.restaurants_list = self.get_restaurants(str(self.get_zomato_city_id(city_name)))
+            places.append(place)
+        
+        return places
 
 
-
-
-trav = Travel(123)
-trav.travel_start()

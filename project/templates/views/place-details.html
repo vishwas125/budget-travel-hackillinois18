@@ -1,0 +1,73 @@
+{% extends "layout/layout.html" %}
+{% block body %}
+
+<div class="container">
+
+  <h2>Your weather insights for the trip:</h2>
+    <p>High: {{item.weather[0]}}</p>
+    <p>Low: {{item.weather[1]}}</p><br/> 
+
+
+
+         <h2>Flight details</h2><br/>
+        <ul class="collapsible" data-collapsible="accordion">
+
+            
+                <li>
+                  <div class="collapsible-header">
+                  
+                  <div class="collapsible-body">
+                      <p></p><br/>
+                </div>
+                </li>
+        </ul>
+        <br/> 
+
+         <h2>Hotel details</h2><br/>
+        <ul class="collapsible" data-collapsible="accordion">
+
+                <li>
+                  <div class="collapsible-header">
+                  <div class="collapsible-body">
+                    </div>
+                </li>
+        </ul>
+        <br/> 
+
+        <h2>Restaurant details</h2><br/>
+        <ul class="collapsible" data-collapsible="accordion">
+
+            {% for res in item.restaurants_list %}
+                <li>
+                  <div class="collapsible-header">
+                    {{res[0]}}
+                  <div class="collapsible-body">
+                      <p>Address: {{res[1]}}</p>
+                      <p>Rating: {{res[2]}}</p>
+                      
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <br/>
+
+        <h2>Attraction details</h2><br/>
+        <ul class="collapsible" data-collapsible="accordion">
+
+            {% for attraction in item.attractions_list %}
+                <li>
+                  <div class="collapsible-header">
+                    Attractions
+                  <div class="collapsible-body">
+                      <p>{{attraction}}</p><br/>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <br/>
+
+</div>
+
+
+
+{% endblock %}

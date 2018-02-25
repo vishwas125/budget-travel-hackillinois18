@@ -1,0 +1,91 @@
+{% extends "layout/layout.html" %}
+{% block body %}
+<br/><br/>
+
+<div class="card">
+       <br/> <h5 style="text-align:center">Please enter the details and we'll recommend some pocket friendly trips for you!</h5><br/>
+<div class="row">
+                <form action="{{ url_for('process') }}" method="POST" id="main">
+        <div class="col m12">
+              <div class=" col m6">
+                 <div class="row">
+                        <div class="input-field offset-m4 col m6">
+                        <i class="material-icons prefix">add_location</i>
+                        <input type="text" name="location" id="autocomplete-input" class="autocomplete">
+                        <label for="autocomplete-input">Start Location</label>
+                          </div>
+                </div>                       
+               </div>      
+               <div class=" col m6 ">
+                        <div class="row">
+                               <div class="input-field col m6">
+                                <i class="material-icons prefix">attach_money</i>
+                                <input id="icon_prefix" name="budget" type="text" class="validate">
+                                <label for="icon_prefix">Approx Budget</label>
+                                </div>
+                       </div>                       
+                </div>        
+           </div>                             
+                                      
+                
+</div>
+
+<div class="row">
+                <div class="col m12">
+                      <div class=" col m6">
+                         <div class="row">
+                                <div class="input-field offset-m4 col m6">
+                                 <input type="text" name="startdate" id="startdate" class="datepicker"/>
+                                 <label for="startdateLabel">Start date</label>
+                                  </div>
+                        </div>                       
+                       </div>      
+                       <div class=" col m6 ">
+                                <div class="row">
+                                       <div class="input-field col m6">
+                                                <input type="text" name ="enddate" id="enddate" class="datepicker"/>
+                                                <label for="enddateLabel">End date</label> 
+                                        </div>
+                               </div>                       
+                        </div>        
+                   </div>                             
+                                              
+                        
+                </div>
+        
+               <br/>
+         <div class="row">
+                 
+        <div class="offset-m2 col m6">
+                        
+                
+                        <div class="row">
+                 <div class="col m3"> <p><b>Priority:</b></p></div>                
+             <div class="col m3"> <p><input type="checkbox" name="travel" id="travel"><label for="travel">Travel</label> </p></div> 
+             <div class="col m3">  <p><input type="checkbox" name="acc" id="acc"><label for="acc">Accomodation</label> </p>  </div>    
+                <div class="col m3"> <p><input type="checkbox" name="food" id="food"><label for="food">Food</label> </p>  </div>
+                </div>    
+
+        </div> 
+
+        </div>  
+
+        <div style="margin-left:75%"><a onclick="document.getElementById('main').submit();" class="btn-floating btn-large waves-effect waves-light teal "><i class="material-icons">check</i></a></div>  
+                                          
+</form>      <br/><br/>                                       
+                                                      
+                 
+        
+        </div><br/><br/>
+</div>
+<script>
+    $('.datepicker').pickadate({
+    selectMonths: true, 
+    selectYears: 15, 
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false 
+  });
+</script>
+{% endblock %}
