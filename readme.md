@@ -1,9 +1,10 @@
 INTRODUCTION
 	
-        It's always been a hasty problem where to spend when you decide to travel some place, whether to spend more on food and compromise your stay or compromise your stay and get some delicious tasty food or drop both these and decide to stay some good place. Some time it becomes so hard to decide the location as well.
-        The Budget Travel application will give you a perfect idea as what might be a good place to visit, which places are good to stay, and the city attractions completely based on your preferences of budget to want to spend for a particular domain such as food or travel or stay.
-        We have used Amadeus’ Sandbox APIs, Zomato APIs, Dark Sky Weather API, Sabre API and IATA API. We  gather all the user data and the budget along with preferences such as food, travel or the stay and based on the preference we provide customer  recommendations and suggest the user, top places to visit or top restaurants the user must try, or the best flights based on the budget.
-        Built using Flask Framework and Materialize.
+The budget is the most important factor while planning or taking any trip. How much money we're going to spend on things like food, accomodation, travel, recreation etc are major factors our budget is going to depend on. To address the priorities and utilize the existing data and services, we bring to you the budget travel buddy application. 
+
+Built at hackillinois 2018, this application uses data from various sources: mainly Amadeusâ€™ Sandbox APIs, Zomato APIs, Dark Sky Weather API, Sabre API and IATA API.
+
+ The user enters his source and budget along with priorities for food/accomodation/travel and the application gets the best possible results for various places the user can go to, along with customized suggestions for restaurants, hotels and flights/trains, fulfilling user's priorities.     
 
 
 REQUIREMENTS
@@ -28,4 +29,5 @@ API
 	Dark-sky( weather API) : https://darksky.net/dev
 	Sabre API : https://developer.sabre.com/docs/REST_APIs
 	Zomato API : https://developers.zomato.com/documentation
+	IATA Codes: http://iatacodes.org/
 
