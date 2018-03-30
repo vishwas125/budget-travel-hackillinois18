@@ -35,5 +35,5 @@ Dark-sky( weather API) : https://darksky.net/dev
 Sabre API : https://developer.sabre.com/docs/REST_APIs
 Zomato API : https://developers.zomato.com/documentation
 IATA Codes: http://iatacodes.org/
-	
+
 
